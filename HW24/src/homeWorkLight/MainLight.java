@@ -43,19 +43,18 @@ public class MainLight {
             System.out.println("Это не номер");
             return;
         }
-        if (num.length() == 11){
-            num = num.substring(1);
+        num = normalNum(num);
+
+//        if (num.length() == 11){
+//            num = num.substring(1);
 //        } else if (num.length() < 10){
 //            System.out.println("");
-        }
+//        }
         if (phoneBook.containsValue(num)){
             System.out.println("Номер " + num + " уже существует!");
             return;
         }
-
-        phoneBook.put(name, num);
-        System.out.println("Абонент " + name + " с номером " + num + " добавлен!");
-
+        addToBook(name, num);
     }
 
     public static void print(){
@@ -69,9 +68,9 @@ public class MainLight {
     }
 
     public static void addForNum(String num) {
-        if (num.length() >= 11){
-            num = num.substring(1);
-        }
+
+        num = normalNum(num);
+
         if (phoneBook.containsValue(num)){
             System.out.println("Номер " + num + " уже есть у абонента");
             return;
@@ -86,7 +85,18 @@ public class MainLight {
             System.out.println(name + " Абонент уже есть!");
             return;
         }
+        addToBook(name, num);
+    }
+
+    private static void addToBook(String name, String num) {
         phoneBook.put(name, num);
         System.out.println("Абонент " + name + " с номером " + num + " добавлен!");
+    }
+
+    private static String normalNum (String num) {
+        if (num.length() == 11){
+            num = num.substring(1);
+        }
+        return num;
     }
 }
