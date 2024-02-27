@@ -1,6 +1,10 @@
 package homeWorkHard;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class MainHard {
 
@@ -17,7 +21,9 @@ public class MainHard {
             if (input.equalsIgnoreCase("exit")){
                 System.out.println("Good Bay!!!");
                 return;
+
             } else if (input.equalsIgnoreCase("print")){
+                System.out.println("\t--------Список всех абонентов---------");
                 print();
             } else if (input.matches(NAME_REGEX)){
                 addForName (input);
@@ -60,7 +66,6 @@ public class MainHard {
             }
         }
     }
-
     public static void addForName(String name) {
         if (phoneBook.containsKey(name)) {
             System.out.println("Абонент " + name + " уже существует!");
@@ -89,7 +94,7 @@ public class MainHard {
         addToBook(name, num);
     }
 
-    public static String checkNum(String num) {
+    private static String checkNum(String num) {
         num = normalNum(num);
         for (Map.Entry<String, Set<String>> contact : phoneBook.entrySet()) {
             if (contact.getValue().contains(num)) {
